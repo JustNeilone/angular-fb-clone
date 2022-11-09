@@ -1,0 +1,35 @@
+
+
+
+
+<div class="post">
+<mat-card class="example-card" *ngIf="dataLoaded">
+      <mat-card-header>
+        <img mat-card-avatar src="{{img}}" class="example-header-image" />
+        <mat-card-title>{{user ? user.username : "..."}}</mat-card-title>
+        <mat-card-subtitle>{{user ? user.name : "..."}}'s dog</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{img}}" alt="Photo of a dog">
+      <mat-card-content>
+        <p>{{post ? post.title : "..."}}</p>
+        <p>
+          {{post ? post.body : "..."}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <ul cdkListbox cdkListboxOrientation="horizontal" aria-labelledby="example-satisfaction-label"
+          class="example-listbox">
+          <li [cdkOption]="1" cdkOptionTypeaheadLabel="great" class="example-option">
+            😀 Great
+          </li>
+          <li [cdkOption]="0" cdkOptionTypeaheadLabel="okay" class="example-option">
+            😐 Okay
+          </li>
+          <li [cdkOption]="-1" cdkOptionTypeaheadLabel="bad" class="example-option">
+            🙁 Bad
+          </li>
+        </ul>
+      </mat-card-actions>
+      <button type="button" (click)="goBack()">Go back</button>
+    </mat-card>
+</div>

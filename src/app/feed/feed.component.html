@@ -1,0 +1,45 @@
+<!-- posts with a thumbnail and first three comments -->
+
+<!-- user icon near the post and username -->
+
+<!-- see more posts by clicking more, open post, open user profile -->
+
+  <div class="feed" *ngIf="dataLoaded else loading">
+    <mat-card *ngFor="let post of posts; let i = index" [attr.data-index]="i" class="example-card">
+      <mat-card-header>
+        <img mat-card-avatar src="{{imgs[i]}}" class="example-header-image" />
+        <mat-card-title>{{users[post.userId] ? users[post.userId].username : "..."}}</mat-card-title>
+        <mat-card-subtitle>{{users[post.userId] ? users[post.userId].name : "..."}}'s dog</mat-card-subtitle>
+        <a class="btn d-inline-block" routerLink="/posts/{{post.id}}">See whole post</a>
+      </mat-card-header>
+      <img mat-card-image src="{{imgs[i]}}" alt="Photo of a dog">
+      <mat-card-content>
+        <p>
+          {{post.title}}
+        </p>
+        <p>
+          {{post.body}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <ul cdkListbox cdkListboxOrientation="horizontal" aria-labelledby="example-satisfaction-label"
+          class="example-listbox">
+          <li [cdkOption]="1" cdkOptionTypeaheadLabel="great" class="example-option">
+            😀 Great
+          </li>
+          <li [cdkOption]="0" cdkOptionTypeaheadLabel="okay" class="example-option">
+            😐 Okay
+          </li>
+          <li [cdkOption]="-1" cdkOptionTypeaheadLabel="bad" class="example-option">
+            🙁 Bad
+          </li>
+        </ul>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <ng-template #loading>
+    <div class="feed">
+      <mat-spinner></mat-spinner>
+      <div>Loading...</div>
+    </div>
+  </ng-template>

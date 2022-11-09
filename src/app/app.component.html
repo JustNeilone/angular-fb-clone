@@ -1,0 +1,50 @@
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">
+      <img src="https://img.icons8.com/color/48/null/pug.png" width="30" height="30" class="d-inline-block align-center"
+        alt="">
+      Facepoog
+    </a>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">Log Out</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-fluid d-flex align-items-start">
+
+    <div *ngIf="isLoggedIn" class="categories d-flex align-items-start align-self-start d-flex flex-column">
+      <button class="category" routerLink="/profile" mat-button>
+        Profile
+      </button>
+      <button class="category" routerLink="/feed" mat-button>
+        Feed
+      </button>
+      <button class="category" routerLink="/friends" mat-button>
+        Friends
+      </button>
+      <button class="category" routerLink="/photos" mat-button>
+        Photos
+      </button>
+      <button class="category" routerLink="/notes" mat-button>
+        Notes
+      </button>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>
